@@ -32,7 +32,7 @@ if ((strpos(message, "/code") === 0) || (strpos(message, "!code") === 0) || (str
                 
                         credt = []
                         while (amountOfCodes > 0) :
-                                rnds = 'BH-' . random_strings(4) . '-' . random_strings(4) . '-' . random_strings(4)
+                                rnds = 'HP-' . random_strings(4) . '-' . random_strings(4) . '-' . random_strings(4)
                                 credt[] = rnds
                                 amountOfCodes = amountOfCodes - 1
                 
@@ -49,7 +49,7 @@ if ((strpos(message, "/code") === 0) || (strpos(message, "!code") === 0) || (str
                                     "✿├𝑲𝒆𝒚: formattedCode\n" .
                                     "✿├𝑫𝒂𝒚𝒔: expiryDays\n" .
                                     "✿├𝗘𝘅𝗽𝗶𝗿𝗲𝘀 𝗼𝗻 expiryDate\n" .
-                                    "🜲 𝑹𝒂𝒏𝒌: PREMIUM @spiderslatt"
+                                    "🜲 𝑹𝒂𝒏𝒌: PREMIUM @Poriot_ke"
                                 )
                                 sendMessage(chatId, messageToSend, messageId)
         
