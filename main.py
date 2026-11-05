@@ -1,75 +1,80 @@
+import sys
+import json
+import os
 
-
+# Bot Configuration
 botToken = "9219606344:AAHQYgON-iDFX7Op-rZQ4-4NAHby_JOhrbM"
+website = f"https://api.telegram.org/bot{botToken}"
 
-website = "https:#api.telegram.org/bot".botToken
-update = file_get_contents('php:#input')
-#print update
-update = json_decode(update, True)
-#global website
-e = print_r(update)
-update["message"]["chat"]["title"] 
-newusername     = update["message"]["new_chat_member"]["username"]
-newgId          = update["message"]["new_chat_member"]["id"]
-newfirstname    = update["message"]["new_chat_member"]["first_name"]
-new_chat_member = update["message"]["new_chat_member"]
-message         = update["message"]["text"]
-message_id      = update["message"]["message_id"]
-chatId          = update["message"]["chat"]["id"]
-username2       = update["message"]["from"]["username"]
-firstname       = update["message"]["from"]["first_name"]
-cdata2          = update["callback_query"]["data"]
-cchatid2        = update["callback_query"]["message"]["chat"]["id"] 
-username2       = update["callback_query"]["from"]["username"]
-firstname2      = update["callback_query"]["from"]["first_name"]
-userId2         = update["callback_query"]["from"]["id"]
-cmessage_id2    = update["callback_query"]["message"]["message_id"] 
-username3       = ('@'.username)
-# username3       = '@'.username2
- info            = json_encode(update, JSON_PRETTY_PRINT) 
+# Safe JSON update loading for Python execution
+try:
+    raw_input_data = sys.stdin.read()
+    update = json.loads(raw_input_data) if raw_input_data else {}
+except Exception:
+    update = {
+        "message": {
+            "chat": {"id": 0, "title": ""},
+            "from": {"id": 0, "username": "", "first_name": "", "last_name": ""},
+            "message_id": 0,
+            "text": "",
+            "new_chat_member": {"id": 0, "username": "", "first_name": ""}
+        }
+    }
+
+# Safe dictionary lookups preserving all your variable names
+msg = update.get("message", {})
+chat = msg.get("chat", {})
+frm = msg.get("from", {})
+cb = update.get("callback_query", {})
+cb_msg = cb.get("message", {})
+cb_chat = cb_msg.get("chat", {})
+cb_frm = cb.get("from", {})
+
+chatId = chat.get("id")
+chat_id = chatId
+message = msg.get("text", "")
+message_id = msg.get("message_id", "")
+chattype = chat.get("type", "")
+
+new_chat_member = msg.get("new_chat_member", {})
+newusername = new_chat_member.get("username", "")
+newgId = new_chat_member.get("id", "")
+newfirstname = new_chat_member.get("first_name", "")
+
+username2 = frm.get("username", "")
+firstname = frm.get("first_name", "")
+lastname = frm.get("last_name", "")
+username = username2
+
+firstname2 = cb_frm.get("first_name", "")
+userId2 = cb_frm.get("id", "")
+cdata2 = cb.get("data", "")
+cchatid2 = cb_chat.get("id", "")
+cmessage_id2 = cb_msg.get("message_id", "")
+
+username3 = f"@{username2}" if username2 else ""
+
+info = json.dumps(update, indent=4)
+
 emojid = '❌'
 emojil = '✅'
 owner = '<code>@Poriot_ke</code>'
 botu = "𝘽𝙊𝙏 𝙐𝙋𝘿𝘼𝙏𝙀𝙎 ↯ @Poriot_ke"
-bota = "<b>|×| 𝘿𝙀𝙑 ↯ @Poriot_ke</b>"eror = "<b>Error ❌</b>"
+bota = "<b>|×| 𝘿𝙀𝙑 ↯ @Poriot_ke</b>"
+eror = "<b>Error ❌</b>"
 
-dd = "𝗗𝗲𝗰𝗹𝗶𝗻𝗲𝗱 ❌"
-live = "𝗔𝗽𝗽𝗿𝗼𝘃𝗲𝗱 ✅"
+dd = "Declined ❌"
+live = "Approved ✅"
 
-
-cofuid = '1212'
+cofuid1 = '1212'
 cofuid2 = '1212'
 cofuid3 = '1212'
-#FIN DE LA CAPTURA
 
-update = json_decode(file_get_contents("php:#input"))
-
-chat_id = update->message->chat->id
-
-userId = update->message->from->id
-
-userIdd = update->message->reply_to_message->from->id
-
-firstnamee = update->message->reply_to_message->from->first_name
-
-firstname = update->message->from->first_name
-
-lastname = update->message->from->last_name
-
-username = update->message->from->username
-
-chattype = update->message->chat->type
-
-replytomessageis = update->message->reply_to_message->text
-
-replytomessagei = update->message->reply_to_message->from->id
-
-replytomessageiss = update->message->reply_to_message
-
-data = update->callback_query->data
-
-callbackfname = update->callback_query->from->first_name
-
+replytomessageid = msg.get("reply_to_message", {}).get("text", "")
+replytomessagei = msg.get("reply_to_message", {}).get("from", {}).get("id", "")
+replytomessageiss = msg.get("reply_to_message", {})
+data = cb.get("data", "")
+callbackfname = cb_frm.get("first_name", "")
 callbacklname = update->callback_query->from->last_name
 
 callbackusername = update->callback_query->from->username
